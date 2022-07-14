@@ -3,8 +3,13 @@ let activeAccordion = [...$accordions].filter(e => e.classList.contains('is-acti
 
 $accordions.forEach(e => {
 	e.onclick = () => {
-		activeAccordion.classList.remove('is-active');
-		e.classList.add('is-active');
-		activeAccordion = e;
+		if(e.classList.contains('is-active')){
+			e.classList.remove('is-active');
+			activeAccordion = null;
+		}else{
+			activeAccordion && activeAccordion.classList.remove('is-active');
+			e.classList.add('is-active');
+			activeAccordion = e;
+		}
 	}
 });
